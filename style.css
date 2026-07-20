@@ -10,14 +10,20 @@ body{
 .container{
     width: 80%;
     margin: auto;
+    margin-top: 20px;
     border: solid 1px black;
     background-color: white;
 }
 h1, h2{
     text-align: center;
 }
+.bandeau_sup{
+    margin-bottom: 20px;
+}
+.grille_conteneur{
+    height: 80vh;
+}
 .grille_conteneur table{
-    width: 80%;
     margin: auto;
     border: 2px solid black;
     border-collapse: collapse;
