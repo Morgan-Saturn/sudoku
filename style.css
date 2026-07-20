@@ -52,3 +52,10 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+.solved_grid{
+    border: 2px solid green;
+}
+.error{
+background-color: rgb(219, 73, 73);
+}
+
