@@ -24,10 +24,16 @@ h1, h2{
 }
 table th, table td{
     border: 1px solid black;
-    padding: 5px;
+    text-align: center;
+    vertical-align: middle;
+    height: 3em;
+    width: 3em;
 }
 .grille_conteneur input[type=number]{
     background-color: rgb(192, 192, 192);
+    height: 100%;
+    width: 100%;
+    border: none;
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
