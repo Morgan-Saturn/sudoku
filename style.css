@@ -18,7 +18,15 @@ h1, h2{
     text-align: center;
 }
 .bandeau_sup{
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.rules{
+    cursor: pointer;
+    margin: auto;
+    padding: 5px;
+    font-size: 15pt;
 }
 .grille_conteneur{
     height: 80vh;
@@ -35,11 +43,18 @@ table th, table td{
     height: 3em;
     width: 3em;
 }
+table tr:nth-of-type(3n) td { /* rend la bordure plus épaisse toutes les trois lignes*/
+    border-bottom: 3px solid black;
+}
+table td:nth-of-type(3n) { /* rend la bordure plus épaisse toutes les trois colonnes*/
+    border-right: 3px solid black;
+}
 .grille_conteneur input[type=number]{
     background-color: rgb(192, 192, 192);
     height: 100%;
     width: 100%;
     border: none;
+    text-align: center;
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -47,10 +62,12 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+.fixed_number{
+    font-weight: 700;
 }
 .solved_grid{
     border: 2px solid green;
