@@ -75,4 +75,39 @@ input[type=number] {
 .error{
 background-color: rgb(219, 73, 73);
 }
-
+.hide_popup{
+    display: none;
+}
+.background_popup{
+    background-color: #b9b8b8b2;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+}
+.popup{
+    margin: auto;
+    margin-top: 10%;
+    width: 55%;
+    border: 1px solid #C4C4C4;
+    background-color: #ffff;
+    border-radius: 9px;
+    padding: 10px;
+    text-align: center;
+}
+.popup .fermer_popup{
+    display: flex;
+    justify-content: flex-end;
+}
+.popup .fermer_popup .fa-solid.fa-x{
+    background-color: #E5E5E5;
+    border-radius: 29px;
+    margin: 4px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

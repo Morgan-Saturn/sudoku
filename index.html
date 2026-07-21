@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Simple Sudoku</title>
 </head>
 <body>
@@ -15,7 +16,7 @@
         <div class="bandeau_sup">
             <h1>Sudoku</h1>
             <h2>A vous de jouer !</h2>
-            <button class="rules">Afficher les règles du jeu</button>
+            <button class="rules" onclick="toggle_popup('display_rules')">Afficher les règles du jeu</button>
         </div>
         <div class="grille_conteneur">
             <table>
@@ -122,6 +123,25 @@
             </table>
         </div>
     </div>
-    <script src="verify.js"></script>
+
+    <!--popup règles-->
+    <div class="background_popup hide_popup" id="display_rules">
+        <div class="popup">
+            <div class="fermer_popup" onclick="toggle_popup('display_rules')">
+                <i class="fa-solid fa-x"></i>
+            </div>
+            <div class="title_popup">
+                <h2>Règles du jeu</h2>
+            </div>
+            <div class="rules_container">
+                <p class="rules">Le Sudoku se joue sur une grille de 9x9 cases, divisée en 9 blocs de 3x3.<br> Certaines cases contiennent déjà un chiffre (cases fixes, en gris ci-dessous). Le joueur doit remplir les cases vides en respectant 3 règles :<br>
+                * Chaque ligne contient les chiffres 1 à 9, sans répétition.<br>
+                * Chaque colonne contient les chiffres 1 à 9, sans répétition.<br>
+                * Chaque bloc 3x3 contient les chiffres 1 à 9, sans répétition.<br>
+                La partie est gagnée quand toutes les cases sont remplies correctement.</p>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
 </body>
 </html>
