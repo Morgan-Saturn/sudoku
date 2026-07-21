@@ -17,19 +17,17 @@ body{
 h1, h2{
     text-align: center;
 }
-.bandeau_sup{
-    margin-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-}
-.rules{
+
+button{
     cursor: pointer;
     margin: auto;
     padding: 5px;
     font-size: 15pt;
 }
-.grille_conteneur{
-    height: 80vh;
+.bandeau_sup{
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
 }
 .grille_conteneur table{
     margin: auto;
@@ -110,4 +108,21 @@ background-color: rgb(219, 73, 73);
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.bandeau_inf{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+@media (max-width: 790px){
+    .container{
+        width: 100%;
+    }
+    .bandeau_inf{
+        padding: 9px;
+        gap: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
 }
