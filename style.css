@@ -6,11 +6,12 @@ body{
     height: 100vh;
     width:auto;
     background-color: rgb(154, 206, 171);
+    overflow: hidden;
 }
 .container{
     width: 80%;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 5%;
     border: solid 1px black;
     background-color: white;
 }
@@ -116,6 +117,9 @@ background-color: rgb(219, 73, 73);
     margin-top: 30px;
 }
 @media (max-width: 790px){
+    body{
+        overflow: visible;
+    }
     .container{
         width: 100%;
     }
@@ -124,5 +128,8 @@ background-color: rgb(219, 73, 73);
         gap: 1rem;
         display: flex;
         flex-direction: column;
+    }
+    .popup{
+        width: 100%;
     }
 }
