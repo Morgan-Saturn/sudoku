@@ -1,0 +1,1 @@
+In this project, I'm trying to develop a sudoku game following the instructions you can find in the assets, mainly using javascript. The goals are to get better at JS, more precisely to get a better handle at the arrays' manipulations and at algorithmic, while giving the user a nice game experience.
