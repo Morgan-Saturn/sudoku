@@ -7,28 +7,24 @@ function toggle_popup(popup_id) {
 
 //VERIFICATION DES VALEURS DU SUDOKU:
 
-//définition du tableau contenant toutes les valeurs de la grille, de ses colonnes, lignes et boîtes
+//définition du tableau contenant toutes les valeurs de la grille
 const node_cellule = document.querySelectorAll('td');
 const sudoku_array = Array.from(node_cellule).map(td => td.innerText);
 
-//définition d'une fonction permettant le découpage des lignes pour une grille = un tableau donné prenant en paramètres l'index de la ligne et la longueur de la ligne (9 si grille de 9x9, 4 si grille de 4x4 etc)
+//définition d'une fonction permettant le découpage des lignes pour une grille donnée prenant en paramètres ladite grille, l'index de la ligne et la longueur de la ligne (9 si grille de 9x9, 4 si grille de 4x4 etc)
 function getRow(board, rowIndex, rowLength) {
     let tr = board.slice((rowIndex * rowLength), ((rowIndex * rowLength) + rowLength));
     return tr;
 }
 
-console.log(getRow(sudoku_array, 4, 9));
-
-//récupération des valeurs des colonnes
-/*function getColumn(board, columnIndex) {
+//définition d'une fonction permettant de récupérer les colonnes d'une grille donnée en prenant pour paramètres la grille, l'index de la colonne voulue et la longueur de la colonne
+function getColumn(board, columnIndex, columnLength) {
     let column = [];
-    for (let row = 1; row < 10; row ++) {
-        column.push(board[row][columnIndex]);
+    for (let i = columnIndex; i < columnLength*columnLength; i+=columnLength) {
+        column.push(board[i]);
     }
     return column;
 }
 
+console.log(getColumn(sudoku_array, 4, 9));
 
-
-let column_3 = getColumn(sudoku_array, 2);
-console.log(column_3);*/
