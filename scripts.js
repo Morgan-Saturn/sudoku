@@ -11,6 +11,8 @@ function toggle_popup(popup_id) {
 const node_cellule = document.querySelectorAll('td');
 const sudoku_array = Array.from(node_cellule).map(td => td.innerText);
 
+//mise à jour des valeurs dans la grille en temps réel
+
 //définition d'une fonction permettant le découpage des lignes pour une grille donnée prenant en paramètres ladite grille, l'index de la ligne et la longueur de la ligne (9 si grille de 9x9, 4 si grille de 4x4 etc)
 function getRow(board, rowIndex, rowLength) {
     let tr = board.slice((rowIndex * rowLength), ((rowIndex * rowLength) + rowLength));
