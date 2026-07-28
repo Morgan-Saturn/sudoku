@@ -30,7 +30,6 @@ node_cellule.forEach((cellule, index) => cellule.addEventListener('input', (even
 
     //vérification du respect des règles en temps réel
     const valid = !checkDuplicates(rowValues) && !checkDuplicates(columnValues) && !checkDuplicates(boxValues);
-    console.log(valid);
     
     //changement du style lors de la détection d'erreurs
     if (!valid) {
@@ -73,3 +72,4 @@ function checkDuplicates(array) {
     return new Set(filtered).size !== filtered.length;//set ne contient que des valeurs uniques, donc on ne retournera ici un nouveau tableau de valeurs que si la longueur de filtered diffère de celle de new Set, ce qui indique la présence de doublons.
 }
 
+//COMPTEUR D'ERREURS

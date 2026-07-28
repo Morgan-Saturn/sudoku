@@ -29,6 +29,11 @@ button{
     display: flex;
     flex-direction: column;
 }
+.compteur{
+    font-size: 15pt;
+    font-weight: 500;
+    margin-left: 2rem;
+}
 .grille_conteneur table{
     margin: auto;
     border: 2px solid black;
@@ -119,6 +124,9 @@ font-weight: 700;
 @media (max-width: 790px){
     .container{
         width: 100%;
+    }
+    .compteur{
+        text-align: center;
     }
     .bandeau_inf{
         padding: 9px;
