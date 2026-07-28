@@ -37,21 +37,18 @@ function getColumn(board, columnIndex, columnLength) {
 }
 //console.log(getColumn(sudoku_array, 0, 9));
 
-//définition d'une fonction permettant le découpage des boîtes pour une grille donnée prenant en paramètre ladite grille, la ligne et la colonne
-/*function getBox(board, rowIndex, rowLength, rowLength, boxLength) {
-    let box = board.slice((rowIndex * (rowLength/boxLength)), ((rowIndex * (rowLength/boxLength)) + rowLength/boxLength));
-    return box;
-}*/
+//définition d'une fonction permettant le découpage des boîtes pour une grille donnée prenant en paramètre ladite grille, la ligne et la colonne. NE FONCTIONNE QUE POUR DES GRILLES DE 9X9 ACTUELLEMENT
 
-function getBox(boxLength) {
-    third_one = getRow(sudoku_array, 0, 9 - (9-boxLength));
-    third_two = getRow(sudoku_array, 9, 9 - (9-boxLength));
-    third_three = getRow(sudoku_array, 18, 9 - (9-boxLength));
-
+function getBox(board, boxWidth, start, gridWidth) {
+    const end = start + boxWidth;
+    const one = board.slice(start, end);
+    const two = board.slice(gridWidth+start, gridWidth+end);
+    const three = board.slice(gridWidth+gridWidth+start, gridWidth+gridWidth+end);
     let box = [];
-    box.push(third_one, third_two, third_three);
+    box.push(one, two, three);
+    box = box.flat();
     return box;
 }
-console.log(getBox(3));//là il fait un tableau avec les 3 premières lignes des 3 boîtes. A creuser
+//console.log(getBox(sudoku_array, 3, 30, 9));
 
 
