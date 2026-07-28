@@ -71,7 +71,8 @@ input[type=number] {
     border: 2px solid green;
 }
 .error{
-background-color: rgb(219, 73, 73);
+color: rgb(219, 73, 73);
+font-weight: 700;
 }
 .hide_popup{
     display: none;

@@ -35,6 +35,8 @@ node_cellule.forEach((cellule, index) => cellule.addEventListener('input', (even
     //changement du style lors de la détection d'erreurs
     if (!valid) {
         event.target.classList.add("error");
+    } else {
+        event.target.classList.remove("error");
     };
 }))
 
@@ -67,7 +69,7 @@ function getBox(board, boxWidth, start, gridWidth) {
 
 //définition d'une fonction dont le but sera de vérifier la présence de doublons dans les lignes, colonnes et boîtes
 function checkDuplicates(array) {
-    const filtered = array.filter(value => !isNaN(value) && value !== 0); //on ne regarde que les valeurs de la grille qui ne sont pas NaN ou 0
+    const filtered = array.filter(value => !isNaN(value)); //on ne regarde que les valeurs de la grille qui ne sont pas NaN
     return new Set(filtered).size !== filtered.length;//set ne contient que des valeurs uniques, donc on ne retournera ici un nouveau tableau de valeurs que si la longueur de filtered diffère de celle de new Set, ce qui indique la présence de doublons.
 }
 
