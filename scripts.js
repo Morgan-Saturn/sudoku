@@ -13,6 +13,8 @@ const node_cellule = document.querySelectorAll('td');
 //définition du tableau contenant toutes les valeurs de la grille
 const sudoku_array = Array.from(node_cellule).map(td => parseInt(td.innerText));
 
+//initialisation du compteur d'erreurs
+var total_errors = 0;
 //mise à jour des valeurs dans la grille en temps réel
 node_cellule.forEach((cellule, index) => cellule.addEventListener('input', (event) => {
     const inputNumber = event.target.value;
@@ -31,9 +33,12 @@ node_cellule.forEach((cellule, index) => cellule.addEventListener('input', (even
     //vérification du respect des règles en temps réel
     const valid = !checkDuplicates(rowValues) && !checkDuplicates(columnValues) && !checkDuplicates(boxValues);
     
-    //changement du style lors de la détection d'erreurs
+    //changement du style lors de la détection d'erreurs et compteur d'erreurs
+    const error_counter = document.getElementById('compteur');
     if (!valid) {
         event.target.classList.add("error");
+        total_errors += 1;
+        error_counter.innerText = total_errors; 
     } else {
         event.target.classList.remove("error");
     };
@@ -72,4 +77,3 @@ function checkDuplicates(array) {
     return new Set(filtered).size !== filtered.length;//set ne contient que des valeurs uniques, donc on ne retournera ici un nouveau tableau de valeurs que si la longueur de filtered diffère de celle de new Set, ce qui indique la présence de doublons.
 }
 
-//COMPTEUR D'ERREURS
