@@ -6,7 +6,6 @@ body{
     height: 100vh;
     width:auto;
     background-color: rgb(154, 206, 171);
-    overflow: hidden;
 }
 .container{
     width: 80%;
@@ -117,9 +116,6 @@ background-color: rgb(219, 73, 73);
     margin-top: 30px;
 }
 @media (max-width: 790px){
-    body{
-        overflow: visible;
-    }
     .container{
         width: 100%;
     }
