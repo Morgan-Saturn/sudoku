@@ -9,6 +9,7 @@ function toggle_popup(popup_id) {
 
 //récupération des td
 const node_cellule = document.querySelectorAll('td');
+
 //définition du tableau contenant toutes les valeurs de la grille
 const sudoku_array = Array.from(node_cellule).map(td => parseInt(td.innerText));
 
@@ -16,7 +17,25 @@ const sudoku_array = Array.from(node_cellule).map(td => parseInt(td.innerText));
 node_cellule.forEach((cellule, index) => cellule.addEventListener('input', (event) => {
     const inputNumber = event.target.value;
     sudoku_array[index] = parseInt(inputNumber);
-    console.log(sudoku_array);
+
+    //calcul des lignes, colonnes et boîtes pour chaque index
+    const row_i = Math.floor(index/9);
+    const column_i = index % 9;
+    const box_i = Math.floor(index/27)* 3 + Math.floor((index % 9) / 3);
+
+    //usage des fonctions pour récupérer la colonne, la ligne et la boîte spécifiques à laquelle appartient la nouvelle valeur entrée par le joueur
+    const rowValues = getRow(sudoku_array, row_i, 9);
+    const columnValues = getColumn(sudoku_array, column_i, 9);
+    const boxValues = getBox(sudoku_array, 3, box_i * 3, 9);
+
+    //vérification du respect des règles en temps réel
+    const valid = !checkDuplicates(rowValues) && !checkDuplicates(columnValues) && !checkDuplicates(boxValues);
+    console.log(valid);
+    
+    //changement du style lors de la détection d'erreurs
+    if (!valid) {
+        event.target.classList.add("error");
+    };
 }))
 
 //définition d'une fonction permettant le découpage des lignes pour une grille donnée prenant en paramètres ladite grille, l'index de la ligne et la longueur de la ligne (9 si grille de 9x9, 4 si grille de 4x4 etc)
@@ -38,18 +57,17 @@ function getColumn(board, columnIndex, columnLength) {
 function getBox(board, boxWidth, start, gridWidth) {
     const end = start + boxWidth;
     const one = board.slice(start, end);
-    const two = board.slice(gridWidth+start, gridWidth+end);
-    const three = board.slice(gridWidth+gridWidth+start, gridWidth+gridWidth+end);
+    const two = board.slice(gridWidth + start, gridWidth + end);
+    const three = board.slice(gridWidth + gridWidth + start, gridWidth + gridWidth + end);
     let box = [];
     box.push(one, two, three);
     box = box.flat();
     return box;
 }
-//console.log(getBox(sudoku_array, 3, 30, 9));
 
 //définition d'une fonction dont le but sera de vérifier la présence de doublons dans les lignes, colonnes et boîtes
-function checkDuplicates(board) {
-    const filtered = board.filter(value => !isNaN(value) && value !== 0); //on ne regarde que les valeurs de la grille qui ne sont pas NaN ou 0
+function checkDuplicates(array) {
+    const filtered = array.filter(value => !isNaN(value) && value !== 0); //on ne regarde que les valeurs de la grille qui ne sont pas NaN ou 0
     return new Set(filtered).size !== filtered.length;//set ne contient que des valeurs uniques, donc on ne retournera ici un nouveau tableau de valeurs que si la longueur de filtered diffère de celle de new Set, ce qui indique la présence de doublons.
 }
 
