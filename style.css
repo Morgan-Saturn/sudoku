@@ -59,6 +59,9 @@ table td:nth-of-type(3n) { /* rend la bordure plus épaisse toutes les trois col
     border: none;
     text-align: center;
 }
+.grille_conteneur input[type=number]:invalid{
+    background-color: rgb(219, 73, 73);
+}
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
