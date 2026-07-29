@@ -37,8 +37,7 @@ node_cellule.forEach((cellule, index) => cellule.addEventListener('input', (even
     if (!sudoku_array.some(val => isNaN(val))){
         table.style.backgroundColor = 'green';
         return;
-    }// some is nan until it gives false, if !nan complete
-
+    };
     //calcul des lignes, colonnes et boîtes pour chaque index
     const row_i = Math.floor(index/9);
     const column_i = index % 9;
