@@ -13,34 +13,26 @@ const node_cellule = document.querySelectorAll('td');
 //définition du tableau contenant toutes les valeurs de la grille
 const sudoku_array = Array.from(node_cellule).map(td => parseInt(td.innerText));
 
-//vérification que les nombres saisis sont bien compris entre 1 et 9
-function verify () {
-    const listInputs = document.querySelectorAll('input[type=number]');
-    for (const input of listInputs) {
-        const validInput = input.checkValidity();
-
-        if(validInput === false) {
-            return;
-        }
-    }
-};
-verify();
 //initialisation du compteur d'erreurs
 var total_errors = 0;
 
-//tableau qui contiendra toutes les entrées correctes du/de la joueur/joueuse en plus des nombres déjà fournis
-let validNumbers = [];
+//pour plus tard. Contient notamment les nombres déjà fournis.
+//let validNumbers = [];
 const fixed_numbers_nodes = document.querySelectorAll('.fixed_number');
 const fixed_numbers = Array.from(fixed_numbers_nodes).map(givenNumbers => parseInt(givenNumbers.innerText));
 //validNumbers = [...fixed_numbers];
 //console.log(validNumbers);
 
-
-
 //mise à jour des valeurs dans la grille en temps réel
 node_cellule.forEach((cellule, index) => cellule.addEventListener('input', (event) => {
     const inputNumber = event.target.value;
+
+    //vérification que l'entrée du joueur est bien un nombre, compris entre 1 et 9
+    if (!event.target.checkValidity()) {
+        return;//console log target. Récupérer le input dans le td si possible
+    }
     sudoku_array[index] = parseInt(inputNumber);
+    //sudoku array some is nan until it gives false, if !nan complete
 
     //calcul des lignes, colonnes et boîtes pour chaque index
     const row_i = Math.floor(index/9);
@@ -63,12 +55,6 @@ node_cellule.forEach((cellule, index) => cellule.addEventListener('input', (even
         error_counter.innerText = total_errors; 
     } else {
         event.target.classList.remove("error");
-
-        //je m'assure qu'on ne pousse dans le tableau que et uniquement des nombres. Pas de poussée de NaN en cas d'effaçage de l'entrée par l'utilisateur.ice par ex
-        if (!Number.isNaN(parseInt(inputNumber))) {
-            validNumbers.push(parseInt(inputNumber));
-        }
-        console.log(validNumbers);
     };
 }))
 

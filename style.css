@@ -61,6 +61,7 @@ table td:nth-of-type(3n) { /* rend la bordure plus épaisse toutes les trois col
 }
 .grille_conteneur input[type=number]:invalid{
     background-color: rgb(219, 73, 73);
+    color: black;
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
