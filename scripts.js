@@ -9,6 +9,7 @@ function toggle_popup(popup_id) {
 
 //récupération des td
 const node_cellule = document.querySelectorAll('td');
+const table = document.querySelector('table');
 
 //définition du tableau contenant toutes les valeurs de la grille
 const sudoku_array = Array.from(node_cellule).map(td => parseInt(td.innerText));
@@ -32,17 +33,21 @@ node_cellule.forEach((cellule, index) => cellule.addEventListener('input', (even
         return;//console log target. Récupérer le input dans le td si possible
     }
     sudoku_array[index] = parseInt(inputNumber);
-    //sudoku array some is nan until it gives false, if !nan complete
+
+    if (!sudoku_array.some(val => isNaN(val))){
+        table.style.backgroundColor = 'green';
+        return;
+    }// some is nan until it gives false, if !nan complete
 
     //calcul des lignes, colonnes et boîtes pour chaque index
     const row_i = Math.floor(index/9);
     const column_i = index % 9;
-    const box_i = Math.floor(index/27)* 3 + Math.floor((index % 9) / 3);
+    const box_i = Math.floor(row_i / 3) * 3 + Math.floor(column_i / 3);
 
     //usage des fonctions pour récupérer la colonne, la ligne et la boîte spécifiques à laquelle appartient la nouvelle valeur entrée par le joueur
     const rowValues = getRow(sudoku_array, row_i, 9);
     const columnValues = getColumn(sudoku_array, column_i, 9);
-    const boxValues = getBox(sudoku_array, 3, box_i * 3, 9);
+    const boxValues = getBox(sudoku_array, 3, box_i, 9);
 
     //vérification du respect des règles en temps réel
     const valid = !checkDuplicates(rowValues) && !checkDuplicates(columnValues) && !checkDuplicates(boxValues);
@@ -74,15 +79,17 @@ function getColumn(board, columnIndex, columnLength) {
 }
 
 //définition d'une fonction permettant le découpage des boîtes pour une grille donnée prenant en paramètre ladite grille, la ligne et la colonne. NE FONCTIONNE QUE POUR DES GRILLES DE 9X9 ACTUELLEMENT
-function getBox(board, boxWidth, start, gridWidth) {
+function getBox(board, boxWidth, box_i, gridWidth) {
+    const startRow = Math.floor(box_i / 3) * 3;
+    const startCol = (box_i % 3) * 3;
+    const start = startRow * gridWidth + startCol;
     const end = start + boxWidth;
-    const one = board.slice(start, end);
-    const two = board.slice(gridWidth + start, gridWidth + end);
-    const three = board.slice(gridWidth + gridWidth + start, gridWidth + gridWidth + end);
-    let box = [];
-    box.push(one, two, three);
-    box = box.flat();
-    return box;
+
+    const one = board.slice(start, start + 3);
+    const two = board.slice(start + gridWidth, start + gridWidth + 3);
+    const three = board.slice(start + 2 * gridWidth, start + 2 * gridWidth + 3);
+
+    return [...one, ...two, ...three];
 }
 
 //définition d'une fonction dont le but sera de vérifier la présence de doublons dans les lignes, colonnes et boîtes
