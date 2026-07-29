@@ -35,7 +35,7 @@ node_cellule.forEach((cellule, index) => cellule.addEventListener('input', (even
     sudoku_array[index] = parseInt(inputNumber);
 
     if (!sudoku_array.some(val => isNaN(val))){
-        table.style.backgroundColor = 'green';
+        table.style.border = '5px solid green';
         return;
     };
     //calcul des lignes, colonnes et boîtes pour chaque index
